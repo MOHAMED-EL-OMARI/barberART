@@ -1,6 +1,8 @@
-<html>
+<html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Website</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 </head>
@@ -10,11 +12,20 @@
     <header>
         <div class="logo">
             <img src="{{ asset('images/logo.png') }}" alt="Website Logo" />
+            <h1>BarberART</h1>
         </div>
-    
+
         <div class="auth-buttons">
-            <a href="/login">Login</a>
-            <a href="/register">Register</a>
+            @guest
+                <a href="/login">Login</a>
+                <a href="/register">Register</a>
+            @endguest
+            @auth
+                <form action="{{ route('logout') }}" method="POST">
+                    @csrf
+                    <button>logout</button>
+                </form>
+            @endauth
         </div>
     </header>
 
