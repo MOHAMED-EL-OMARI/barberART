@@ -1,18 +1,7 @@
 <?php
 
 return [
-
-    /*
-    |--------------------------------------------------------------------------
-    | Default Filesystem Disk
-    |--------------------------------------------------------------------------
-    |
-    | Here you may specify the default filesystem disk that should be used
-    | by the framework. The "local" disk, as well as a variety of cloud
-    | based disks are available to your application for file storage.
-    |
-    */
-
+    // Default disk to use
     'default' => env('FILESYSTEM_DISK', 'local'),
 
     /*
@@ -32,8 +21,7 @@ return [
 
         'local' => [
             'driver' => 'local',
-            'root' => storage_path('app/private'),
-            'serve' => true,
+            'root' => storage_path('app'),
             'throw' => false,
         ],
 
@@ -41,6 +29,15 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/public'),
             'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
+        // Add custom disk for barber profile photos
+        'barber_photos' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/barber_photos'),
+            'url' => env('APP_URL').'/storage/barber_photos',
             'visibility' => 'public',
             'throw' => false,
         ],
@@ -73,5 +70,4 @@ return [
     'links' => [
         public_path('storage') => storage_path('app/public'),
     ],
-
 ];

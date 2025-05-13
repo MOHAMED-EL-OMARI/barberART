@@ -9,14 +9,14 @@ return new class extends Migration
 {
     public function up()
     {
-        Schema::create('availability', function (Blueprint $table) {
+        Schema::create('availabilities', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('barber_id');
             $table->string('day');
             $table->time('startTime');
             $table->time('endTime');
             $table->timestamps();
-            
+
             $table->foreign('barber_id')->references('id')->on('barbers')->onDelete('cascade');
         });
     }

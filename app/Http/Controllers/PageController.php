@@ -11,7 +11,8 @@ class PageController extends Controller
 {
     public function home()
     {
-        return view('pages.home');
+        $barbers = \App\Models\Barber::with(['user', 'reviews'])->get();
+        return view('pages.home', compact('barbers'));
     }
     public function showLogin()
     {
